@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story2Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E0E7F0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 100px;
+            background-color: #90B8E6;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar.expanded {
+            width: 250px;
+        }
+
+        .sidebar .logo,
+        .sidebar .menu,
+        .sidebar .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar .menu-item {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar .menu-item:hover {
+            background-color: #3389C5;
+        }
+
+        .sidebar .menu-item i {
+            color: white;
+            font-size: 1.5rem;
+            margin-left: 10px;
+        }
+
+        /* Initially hide text in menu items */
+        .sidebar .menu-item span {
+            display: none;
+            color: white;
+            margin-left: 15px;
+            white-space: nowrap;
+        }
+
+        /* Show text only when sidebar is expanded */
+        .sidebar.expanded .menu-item span {
+            display: inline-block;
+        }
+
+        /* Button to toggle sidebar */
+        .sidebar .toggle-btn {
+            background-color: #3389C5;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar .toggle-btn:hover {
+            background-color: #1D6B9F;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        .input-section {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-box {
+            background-color: #C4D5EF;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 1rem;
+            width: 60%;
+            max-width: 700px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .input-box input {
+            background: none;
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 20px;
+            color: #333;
+        }
+
+        .input-box button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .input-box button:hover {
+            background-color: #555;
+        }
+
+        .side-bar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 60px;
+            background-color: #90B8E6;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        .side-bar button,
+        .side-bar i {
+            margin: 20px;
+            background-color: #3389C5;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .side-bar button:hover {
+            background-color: #1D6B9F;
+        }
+
+        .side-bar .settings,
+        .side-bar .help {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+        <div class="menu">
+            <div class="menu-item">
+                <i>➕</i>
+                <span>Add Story</span>
+            </div>
+            <div class="menu-item">
+                <i>⚙</i>
+                <span>Settings</span>
+            </div>
+            <div class="menu-item">
+                <i>❓</i>
+                <span>Help</span>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="menu-item">
+                <i>👤</i>
+                <span>Profile</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">Story2Test</h1>
+        <p class="subtitle">Turning user stories into testable realities</p>
+    </div>
+
+    <div class="input-section">
+        <div class="input-box">
+            <button>T</button>
+            <button>C</button>
+            <input type="text"
+                placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;">
+            <button>▶</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle sidebar between collapsed and expanded state
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('expanded');
+        }
+    </script>
+</body>
+
+</html>
