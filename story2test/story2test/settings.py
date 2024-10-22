@@ -56,7 +56,7 @@ ROOT_URLCONF = 'story2test.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "story2test/templates"],
+        'DIRS': [BASE_DIR / "story2test/story2test_frontend/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

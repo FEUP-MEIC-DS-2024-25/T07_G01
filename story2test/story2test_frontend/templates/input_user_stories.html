@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story2Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+
+<body>
+<div class="sidebar" id="sidebar">
+    <div class="expand-container">
+        <button class="toggle-btn" onclick="toggleSidebar()">
+            <img class="collapsed-icon" src="{% static 'img/right-arrow.svg' %}" alt="Collapsed Icon">
+            <img class="expanded-icon" src="{% static 'img/left-arrow.svg' %}" alt="Expanded Icon">
+        </button>
+    </div>
+    <div class="new-chat-container">
+        <button class="toggle-btn">
+            <img class="new-chat-collapsed" src="{% static 'img/add-circle.svg' %}" alt="New Chat Collapsed Icon">
+            <img class="new-chat-expanded" src="{% static 'img/new-chat.svg' %}" alt="New Chat Expanded Icon">
+        </button>
+    </div>
+    <div class="help-container">
+        <button class="toggle-btn">
+            <img class="help" src="{% static 'img/help-circle.svg' %}" alt="Help Icon">
+        </button>
+        <p class="help-description">Help</p>
+    </div>
+    <div class="settings-container">
+        <button class="toggle-btn">
+            <img class="settings" src="{% static 'img/settings.svg' %}" alt="Settings Icon">
+        </button>
+        <p class="settings-description">Settings</p>
+    </div>
+</div>
+<div class="content">
+    <div class="content-header">
+        <h1 class="title">Story2Test</h1>
+        <p class="subtitle">Turning user stories into testable realities</p>
+    </div>
+    <div class="input-section">
+        <div class="input-box">
+            <button class="toggle-btn">
+                <img class="convert-to-form" src="{% static 'img/convert-to-form.svg' %}" alt="Convert to Form Icon">
+            </button>
+            <button class="toggle-btn">
+                <img class="attach-file" src="{% static 'img/attach-file.svg' %}" alt="Attach File Icon">
+            </button>
+            <input type="text"
+                   placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;">
+            <button onclick="sendToBackend()" class="toggle-btn">
+                <img class="send-prompt" src="{% static 'img/send-circle.svg' %}" alt="Send Prompt Icon">
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
