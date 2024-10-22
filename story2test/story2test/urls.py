@@ -20,5 +20,7 @@ from story2test_frontend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.input_user_stories, name='input_user_stories'),
+    path('', views.input_user_stories, name='input_user_stories'),
+    path('api/userstories/', views.UserStoryListCreate.as_view(), name='userstories-list-create'),
+    path('api/gemini/', views.GeminiAIView.as_view(), name='gemini-ai'),
 ]

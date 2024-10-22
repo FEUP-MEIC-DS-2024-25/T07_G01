@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'story2test_frontend',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
