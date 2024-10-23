@@ -64,7 +64,8 @@ async function sendToBackend() {
 
     const geminiMessage = document.createElement("div");
     geminiMessage.classList.add("chat-message", "gemini-message");
-    geminiMessage.innerText = `${data.message}`;
+
+    geminiMessage.innerHTML = marked.parse(data.message);
     chatSection.appendChild(geminiMessage);
 
     chatSection.scrollTop = chatSection.scrollHeight;

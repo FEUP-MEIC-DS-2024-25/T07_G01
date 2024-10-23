@@ -18,7 +18,7 @@ class GeminiAIView(View):
         user_story = body.get("user_story")
 
         if user_story:
-            gemini_input = f"Isto é uma user story, podes-me dizer quem é o sujeito aqui {user_story}?"
+            gemini_input = f"Dada esta user story: {user_story}, podes-me converter para o formato Gherkin e gerar um esboço para um acceptance test? Se não estiver em formato \"User Story\" apenas pede para repetir."
 
             try:
                 result = call_gemini_api(gemini_input)
