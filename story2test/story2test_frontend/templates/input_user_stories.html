@@ -45,6 +45,8 @@
         <h1 class="title">Story2Test</h1>
         <p class="subtitle">Turning user stories into testable realities</p>
     </div>
+    <div class="chat-section hidden" id="chat-section">
+    </div>
     <div class="input-section">
         <div class="input-box">
             <button class="toggle-btn">
@@ -53,7 +55,7 @@
             <button class="toggle-btn">
                 <img class="attach-file" src="{% static 'img/attach-file.svg' %}" alt="Attach File Icon">
             </button>
-            <input type="text" id="user_story_input" placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;">
+            <input type="text" id="user_story_input" placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;" onkeypress="checkEnter(event)">
             <button onclick="sendToBackend()" class="toggle-btn">
                 <img class="send-prompt" src="{% static 'img/send-circle.svg' %}" alt="Send Prompt Icon">
             </button>

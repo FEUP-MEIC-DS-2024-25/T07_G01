@@ -5,7 +5,7 @@ from .serializers import UserStorySerializer
 from django.http import JsonResponse
 from django.views import View
 import json
-import os
+import google.generativeai as genai
 
 # API view to list and create user stories
 class UserStoryListCreate(generics.ListCreateAPIView):
@@ -34,10 +34,7 @@ def input_user_stories(request):
     return render(request, 'input_user_stories.html')
 
 def call_gemini_api(user_input):
-    # Move the import inside the function to avoid circular import issues
-    import google.generativeai as genai
-
-    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Use environment variable
+    genai.configure(api_key="AIzaSyCAhIoSs93i2maxH8A3ESi3LmqCygp2sxY")
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(user_input)
 

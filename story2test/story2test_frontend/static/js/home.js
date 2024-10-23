@@ -26,9 +26,30 @@ function toggleSidebar() {
     }
 }
 
+function checkEnter(event) {
+    if (event.key === 'Enter') {
+        sendToBackend();
+    }
+}
+
 async function sendToBackend() {
     const userInput = document.getElementById("user_story_input").value;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    const contentHeader = document.querySelector('.content-header');
+    const chatSection = document.getElementById("chat-section");
+
+    if (chatSection.classList.contains("hidden")) {
+        contentHeader.classList.add('hidden');
+        chatSection.classList.remove('hidden');
+    }
+
+    const userMessage = document.createElement("div");
+    userMessage.classList.add("chat-message", "user-message");
+    userMessage.innerText = `${userInput}`;
+    chatSection.appendChild(userMessage);
+
+    chatSection.scrollTop = chatSection.scrollHeight;
 
     const response = await fetch("/api/gemini/", {
         method: "POST",
@@ -40,5 +61,13 @@ async function sendToBackend() {
     });
 
     const data = await response.json();
-    alert(`Resposta do Gemini: ${data.message}`);
+
+    const geminiMessage = document.createElement("div");
+    geminiMessage.classList.add("chat-message", "gemini-message");
+    geminiMessage.innerText = `${data.message}`;
+    chatSection.appendChild(geminiMessage);
+
+    chatSection.scrollTop = chatSection.scrollHeight;
+
+    document.getElementById("user_story_input").value = "";
 }
