@@ -26,6 +26,10 @@ function toggleSidebar() {
     }
 }
 
+function toggleThreePrompts() {
+    
+}
+
 function checkEnter(event) {
     if (event.key === 'Enter') {
         sendToBackend();
@@ -51,17 +55,6 @@ async function sendToBackend() {
 
     chatSection.scrollTop = chatSection.scrollHeight;
 
-    const response = await fetch("/api/gemini/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": csrfToken
-        },
-        body: JSON.stringify({ user_story: userInput })
-    });
-
-    const data = await response.json();
-
     const geminiMessageContainer = document.createElement("div");
     geminiMessageContainer.classList.add("chat-message", "gemini-message-container");
 
@@ -80,34 +73,58 @@ async function sendToBackend() {
     geminiMessageContainer.appendChild(geminiMessage);
     chatSection.appendChild(geminiMessageContainer);
 
-    const parsedMessage = marked.parse(data.message);
+    try {
+        const response = await fetch("/api/gemini/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            },
+            body: JSON.stringify({ user_story: userInput })
+        });
 
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = parsedMessage;
+        if (!response.ok) {
+            throw new Error('Server error: ' + response.statusText);
+        }
 
-    async function typeMessage(element, parentElement, delay = 10) {
-        for (let child of element.childNodes) {
-            if (child.nodeType === Node.ELEMENT_NODE) {
-                const clonedElement = child.cloneNode(false);
-                parentElement.appendChild(clonedElement);
-                await typeMessage(child, clonedElement, delay);
-            } else if (child.nodeType === Node.TEXT_NODE) {
-                const textContent = child.textContent;
-                let index = 0;
+        const data = await response.json();
+        document.getElementById("user_story_input").value = "";
 
-                while (index < textContent.length) {
-                    parentElement.appendChild(document.createTextNode(textContent.charAt(index)));
-                    index++;
-                    chatSection.scrollTop = chatSection.scrollHeight;
-                    await new Promise(resolve => setTimeout(resolve, delay));
+        const parsedMessage = marked.parse(data.message);
+
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = parsedMessage;
+
+        async function typeMessage(element, parentElement, delay = 10) {
+            for (let child of element.childNodes) {
+                if (child.nodeType === Node.ELEMENT_NODE) {
+                    const clonedElement = child.cloneNode(false);
+                    parentElement.appendChild(clonedElement);
+                    await typeMessage(child, clonedElement, delay);
+                } else if (child.nodeType === Node.TEXT_NODE) {
+                    const textContent = child.textContent;
+                    let index = 0;
+
+                    while (index < textContent.length) {
+                        parentElement.appendChild(document.createTextNode(textContent.charAt(index)));
+                        index++;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
                 }
+                chatSection.scrollTop = chatSection.scrollHeight;
             }
         }
+
+        await typeMessage(tempDiv, geminiMessage);
+
+    } catch (error) {
+        document.getElementById("user_story_input").value = "";
+
+        console.error('Error:', error);
+
+        geminiMessage.innerText = 'An error occurred: ' + error.message;
+        geminiMessage.classList.add("error-message");
+
+        chatSection.scrollTop = chatSection.scrollHeight;
     }
-
-    document.getElementById("user_story_input").value = "";
-
-    await typeMessage(tempDiv, geminiMessage);
-
-    chatSection.scrollTop = chatSection.scrollHeight;
 }
