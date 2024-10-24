@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.views import View
 import json
 import google.generativeai as genai
+import re
 
 # API view to list and create user stories
 class UserStoryListCreate(generics.ListCreateAPIView):
@@ -17,8 +18,8 @@ class GeminiAIView(View):
         body = json.loads(request.body)
         user_story = body.get("user_story")
 
-        if user_story:
-            gemini_input = f"Dada esta user story: {user_story}, podes-me converter para o formato Gherkin e gerar um esboço para um acceptance test? Se não estiver em formato \"User Story\" apenas pede para repetir."
+        if check_if_user_story_format(user_story):
+            gemini_input = f"Given this user story: {user_story}, can you convert it to Gherkin format and generate a sketch for an acceptance test?"
 
             try:
                 result = call_gemini_api(gemini_input)
@@ -26,7 +27,9 @@ class GeminiAIView(View):
             except Exception as e:
                 return JsonResponse({"error": str(e)}, status=500)
         else:
-            return JsonResponse({"error": "Input inválido"}, status=400)
+            return JsonResponse({
+                "message": "Please provide a valid User Story.\n\nI need a User Story to convert it to Gherkin and generate an acceptance test example.\n\nIf the information is not on the \"User Story\" format, please, repeat your request."
+            })
 
 def input_user_stories(request):
     if request.method == 'POST':
@@ -41,3 +44,11 @@ def call_gemini_api(user_input):
     return {
         "message": response.text
     }
+
+def check_if_user_story_format(user_story):
+    pattern = r"^As an? [a-zA-Z\s]+,? I want to [a-zA-Z\s]+,? so that [a-zA-Z\s]+.?$"
+    
+    if re.match(pattern, user_story, re.IGNORECASE):
+        return True
+    else:
+        return False

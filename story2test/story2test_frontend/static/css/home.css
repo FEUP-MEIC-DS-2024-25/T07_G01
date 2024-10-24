@@ -154,23 +154,22 @@ body {
     /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
 }
 
-/* Personalizar a barra de scroll */
 #chat-section::-webkit-scrollbar {
-    width: 12px; /* Largura da barra de scroll */
+    width: 12px;
 }
 
 #chat-section::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Cor do fundo da scrollbar */
+    background: #f1f1f1;
 }
 
 #chat-section::-webkit-scrollbar-thumb {
-    background-color: #888; /* Cor da barra de scroll */
-    border-radius: 10px; /* Bordas arredondadas */
-    border: 3px solid #f1f1f1; /* Cria um efeito de margem para a barra */
+    background-color: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
 }
 
 #chat-section::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Cor ao passar o cursor por cima */
+    background: #555;
 }
 
 .chat-message {
@@ -182,6 +181,16 @@ body {
 .user-message {
     background-color: #B4D4FF;
     align-self: flex-end;
+}
+
+.robot-image {
+    margin-right: 10px;
+}
+
+.gemini-message-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
 }
 
 .gemini-message {
