@@ -25,7 +25,8 @@ body {
 }
 
 .sidebar .expand-container,
-.sidebar, .new-chat-container,
+.sidebar,
+.new-chat-container,
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -68,7 +69,8 @@ body {
     transition: background-color 0.2s ease;
 }
 
-.collapsed-icon, .expanded-icon {
+.collapsed-icon,
+.expanded-icon {
     width: 30px;
     height: 30px;
     margin-top: 1em;
@@ -94,7 +96,8 @@ body {
     height: 30px;
 }
 
-.help-description, .settings-description {
+.help-description,
+.settings-description {
     font-weight: bold;
     font-size: 20px;
     margin: 0;
@@ -194,18 +197,20 @@ body {
 }
 
 .gemini-message {
-    /*background-color: #e1f5fe;*/
+    background-color: #328bff;
+    display: flex;
     align-self: flex-start;
+    border-radius: 10px;
 }
 
 .error-message {
-    background-color: #ffcccc; /* Light red background */
-    border: 1px solid #ff6666; /* Red border */
-    border-radius: 10px; /* Rounded corners to match the chat bubble style */
+    background-color: #ffcccc;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
     padding: 10px;
-    color: #800000; /* Dark red text */
+    color: #800000;
     font-weight: bold;
-    max-width: 60%; /* Adjust this to match other bubbles */
+    max-width: 60%;
     word-wrap: break-word;
     margin: 5px 0;
     display: inline-block;

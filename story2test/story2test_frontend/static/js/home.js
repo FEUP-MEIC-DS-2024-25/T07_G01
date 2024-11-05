@@ -27,7 +27,13 @@ function toggleSidebar() {
 }
 
 function toggleThreePrompts() {
-    
+
+}
+
+function uploadFile() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.click();
 }
 
 function checkEnter(event) {
@@ -95,7 +101,7 @@ async function sendToBackend() {
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = parsedMessage;
 
-        async function typeMessage(element, parentElement, delay = 10) {
+        async function typeMessage(element, parentElement, delay = 5) {
             for (let child of element.childNodes) {
                 if (child.nodeType === Node.ELEMENT_NODE) {
                     const clonedElement = child.cloneNode(false);

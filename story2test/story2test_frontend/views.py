@@ -19,7 +19,7 @@ class GeminiAIView(View):
         user_story = body.get("user_story")
 
         if check_if_user_story_format(user_story):
-            gemini_input = f"Given this user story: {user_story}, can you convert it to Gherkin format and generate a sketch for an acceptance test?"
+            gemini_input = f"Given this user story: \"{user_story}\", can you convert it to Gherkin format and generate an acceptance test for it in Java? Answer just the Gherkin format and the code, nothing else but the Gherkin format and code."
 
             try:
                 result = call_gemini_api(gemini_input)
