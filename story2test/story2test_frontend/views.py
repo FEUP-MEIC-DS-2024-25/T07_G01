@@ -68,17 +68,23 @@ def first_time(request):
 
     if not conversation:
         conversation = Conversation.objects.create(created_at=datetime.now())
+        conversation.save()
 
     return redirect('input_user_stories', conversation_id=conversation.id)
 
 
 def input_user_stories(request, conversation_id):
     conversation = Conversation.objects.filter(id=conversation_id).first()
+    all_chats = Conversation.objects.all().order_by('-id')
 
-    if not conversation:
-        conversation = Conversation.objects.create(created_at=datetime.now())
+    return render(request, 'input_user_stories.html', {'conversation_id': conversation.id, 'chats': all_chats})
 
-    return render(request, 'input_user_stories.html', {'conversation_id': conversation.id})
+def create_new_chat(request):
+    conversation = Conversation.objects.last()
+    new_id = conversation.id + 1
+    Conversation.objects.create(id=new_id, created_at=datetime.now())
+
+    return redirect('input_user_stories', conversation_id=new_id)
 
 
 def call_gemini_api(user_input):
@@ -114,3 +120,13 @@ def return_conversation_messages(request, conversation_id):
 
     # Return the messages as JSON
     return JsonResponse({'messages': message_list})
+
+
+def delete_chat(request, current_conversation_id, conversation_id):
+    conversation = Conversation.objects.filter(id=conversation_id).first()
+    conversation.delete()
+
+    if current_conversation_id == conversation_id:
+        return redirect('first_time')
+
+    return redirect('input_user_stories', conversation_id=current_conversation_id)

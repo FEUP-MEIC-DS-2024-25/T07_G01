@@ -8,6 +8,7 @@ function toggleSidebar() {
     const helpWord = document.querySelector('.help-description');
     const newChatCollapsed = document.querySelector('.new-chat-collapsed');
     const newChatExpanded = document.querySelector('.new-chat-expanded');
+    const chatHistory = document.querySelector('.chat-history-container');
 
     if (collapsedIcon.style.display === 'none') {
         collapsedIcon.style.display = 'block';
@@ -16,6 +17,7 @@ function toggleSidebar() {
         helpWord.style.display = 'none';
         newChatCollapsed.style.display = 'block';
         newChatExpanded.style.display = 'none';
+        chatHistory.style.display = 'none';
     } else {
         collapsedIcon.style.display = 'none';
         expandedIcon.style.display = 'block';
@@ -23,6 +25,7 @@ function toggleSidebar() {
         helpWord.style.display = 'block';
         newChatCollapsed.style.display = 'none';
         newChatExpanded.style.display = 'block';
+        chatHistory.style.display = 'block';
     }
 }
 

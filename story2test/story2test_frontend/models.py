@@ -15,8 +15,7 @@ class Conversation(models.Model):
     title = models.CharField(max_length=255, blank=True)
 
     def save(self, *args, **kwargs):
-        if not self.title:
-            self.title = f"Chat {self.id}"
+        self.title = f"Chat {self.id}"
 
         super().save(*args, **kwargs)
 

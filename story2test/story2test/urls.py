@@ -21,6 +21,8 @@ from story2test_frontend import views
 urlpatterns = [
     path('', views.first_time, name='first_time'),
     path('<int:conversation_id>/', views.input_user_stories, name='input_user_stories'),
+    path('delete-chat/<int:current_conversation_id>/<int:conversation_id>/', views.delete_chat, name='delete_chat'),
+    path('new-chat', views.create_new_chat, name='create_new_chat'),
     path('api/userstories/', views.UserStoryListCreate.as_view(), name='userstories-list-create'),
     path('api/gemini/<int:conversation_id>/', views.GeminiAIView.as_view(), name='gemini-ai'),
     path('api/conversations/<int:conversation_id>/messages/', views.return_conversation_messages, name='return_conversation_messages')
