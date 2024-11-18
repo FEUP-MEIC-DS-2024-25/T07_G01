@@ -13,7 +13,7 @@
     <script src="{% static 'js/home.js' %}"></script>
     <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
-
+<input type="hidden" id="conversation_id" value="{{ conversation_id }}">
 <body>
 <div class="sidebar" id="sidebar">
     <div class="expand-container">
@@ -23,10 +23,30 @@
         </button>
     </div>
     <div class="new-chat-container">
-        <button class="toggle-btn">
-            <img class="new-chat-collapsed" src="{% static 'img/add-circle.svg' %}" alt="New Chat Collapsed Icon">
-            <img class="new-chat-expanded" src="{% static 'img/new-chat.svg' %}" alt="New Chat Expanded Icon">
-        </button>
+        <a href="{% url 'create_new_chat' %}" class="new-chat-link">
+            <button class="toggle-btn">
+                <img class="new-chat-collapsed" src="{% static 'img/add-circle.svg' %}" alt="New Chat Collapsed Icon">
+                <img class="new-chat-expanded" src="{% static 'img/new-chat.svg' %}" alt="New Chat Expanded Icon">
+            </button>
+        </a>
+    </div>
+    <div class="chat-history-container">
+        <p>Recent history</p>
+        {% for chat in chats %}
+            <div class="chat-history-item">
+                <a href="{% url 'input_user_stories' chat.id %}" class="chat-link">
+                    <span class="chat-title">{{ chat.title }}</span>
+                </a>
+                <div class="delete-chat-container">
+                    <a href="{% url 'delete_chat' conversation_id chat.id %}">
+                        <button class="toggle-btn">
+                            <img class="delete-chat" src="{% static 'img/trash.svg' %}"
+                                 alt="Delete Chat">
+                        </button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
     <div class="help-container">
         <button class="toggle-btn">
@@ -56,7 +76,9 @@
             <button class="toggle-btn" onclick="uploadFile()">
                 <img class="attach-file" src="{% static 'img/attach-file.svg' %}" alt="Attach File Icon">
             </button>
-            <input type="text" id="user_story_input" placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;" onkeypress="checkEnter(event)">
+            <input type="text" id="user_story_input"
+                   placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;"
+                   onkeypress="checkEnter(event)">
             <button onclick="sendToBackend()" class="toggle-btn">
                 <img class="send-prompt" src="{% static 'img/send-circle.svg' %}" alt="Send Prompt Icon">
             </button>
