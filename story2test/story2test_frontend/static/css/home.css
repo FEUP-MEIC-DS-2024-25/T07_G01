@@ -45,6 +45,39 @@ body {
     top: 7em;
 }
 
+.chat-history-container {
+    position: absolute;
+    display: none;
+    left: 1.6em;
+    top: 12em;
+}
+
+.chat-history-container > p {
+    font-weight: bold;
+    padding-left: 8px;
+}
+
+.chat-history-item {
+    margin-top: 0.6em;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.chat-history-item > a {
+    vertical-align: middle;
+    text-decoration: none;
+    color: #333;
+    padding: 4px 8px;
+}
+
+.chat-history-item > a:hover {
+    background: #c2dcff;
+    color: #000000;
+    border-radius: 8px;
+}
+
+
 .help-container {
     display: flex;
     flex-direction: row;
@@ -271,4 +304,11 @@ body {
 .send-prompt {
     width: 30px;
     height: 30px;
+}
+
+.delete-chat {
+    width: 18px;
+    height: 18px;
+    vertical-align: bottom;
+    margin-top: 5px;
 }

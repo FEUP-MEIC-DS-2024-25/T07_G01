@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import './App.css';
 import * as icons from './icons.js';
 import Sidebar from './Sidebar.jsx';
