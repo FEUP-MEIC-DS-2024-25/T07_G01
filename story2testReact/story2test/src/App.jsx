@@ -1,20 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import * as icons from './icons.js';
+import Sidebar from './Sidebar.jsx';
 
 function App() {
   const [userStory, setUserStory] = useState('');
   const [messages, setMessages] = useState([]);
   const chatSectionRef = useRef(null);
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
   const toggleThreePrompts = () => {
     console.log("Toggle three prompts");
-  };
-
-  const toggleSidebar = () => {
-    setSidebarExpanded(prev => !prev);
   };
 
   const checkEnter = (event) => {
@@ -86,30 +82,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className={`sidebar ${sidebarExpanded ? 'expanded' : ''}`} id="sidebar">
-        <div className="expand-container">
-          <button className="toggle-btn" onClick={toggleSidebar}>
-            <img src={sidebarExpanded ? icons.left_arrow : icons.right_arrow} alt="Toggle Sidebar" className="collapsed-icon" />
-          </button>
-        </div>
-        <div className="new-chat-container">
-          <button className="toggle-btn">
-            <img src={sidebarExpanded ? icons.new_chat : icons.add_circle} alt="New Chat" className={sidebarExpanded ? "new-chat-expanded" : "new-chat-collapsed"} />
-          </button>
-        </div>
-        <div className="help-container">
-          <button className="toggle-btn">
-            <img src={icons.help_circle} alt="Help" className="help" />
-          </button>
-          {sidebarExpanded && <p className="help-description">Help</p>}
-        </div>
-        <div className="settings-container">
-          <button className="toggle-btn">
-            <img src={icons.settings} alt="Settings" className="settings" />
-          </button>
-          {sidebarExpanded && <p className="settings-description">Settings</p>}
-        </div>
-      </div>
+      <Sidebar/>
       <div className='content'>
         <div className={messages.length != 0 ? "conteng-header hidden" : "content-header"}>
           <h1 className="title">Story2Test</h1>
