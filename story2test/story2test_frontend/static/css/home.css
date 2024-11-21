@@ -230,10 +230,11 @@ body {
 }
 
 .gemini-message {
-    background-color: #328bff;
-    display: flex;
+    background-color: #5b9df3;
     align-self: flex-start;
     border-radius: 10px;
+    padding: 10px;
+    max-width: 80vh;
 }
 
 .error-message {
@@ -311,6 +312,39 @@ body {
     height: 18px;
     vertical-align: bottom;
     margin-top: 5px;
+}
+
+pre {
+    background-color: #000000;
+    border: 1px solid #252525;
+    padding: 10px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #e7e7e7;
+}
+
+pre::-webkit-scrollbar {
+    width: 12px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .tutorial-header {
