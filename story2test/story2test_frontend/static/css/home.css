@@ -346,3 +346,70 @@ pre::-webkit-scrollbar-thumb {
 pre::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.tutorial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tutorial-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.tutorial-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.712);
+    z-index: 1000;
+    overflow-y: auto;
+    display: none;
+}
+
+.tutorial-content {
+    margin: 2em auto;
+    width: 80%;
+    max-width: 800px;
+    background-color: #B4D4FF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.tutorial-content h1, .tutorial-content h2 {
+    color: #333;
+}
+
+.tutorial-content ul, .tutorial-content ol {
+    margin-left: 20px;
+}
+
+.tutorial-content pre {
+    background-color: #B4D4FF;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.close-btn {
+    display: block;
+    margin: 20px auto 0;
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 440px;
+    padding: 5px;
+    font-size: 20px;
+}

@@ -45,6 +45,15 @@ function checkEnter(event) {
     }
 }
 
+function toggleTutorial() {
+    const tutorialSection = document.getElementById("tutorial-section");
+    if (tutorialSection.style.display === "block") {
+        tutorialSection.style.display = "none";
+    } else {
+        tutorialSection.style.display = "block";
+    }
+}
+
 async function loadPreviousMessages(conversationId) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const chatSection = document.getElementById("chat-section");
