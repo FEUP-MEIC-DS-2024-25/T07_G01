@@ -29,7 +29,7 @@ class GeminiAIView(View):
         )
 
         if check_if_user_story_format(user_story):
-            gemini_input = f"Given this user story: \"{user_story}\", convert it to Gherkin format and generate an acceptance test for it in Java. Also please try to create at least 5 scenarios for the tests. Just answer with the Gherking format and Code, no more text."
+            gemini_input = f"Given this user story: \"{user_story}\", convert it to Gherkin format and give a quick explanation of the test. Also please try to create at least 5 scenarios for the tests."
 
             try:
                 answer = call_gemini_api(gemini_input)
