@@ -78,7 +78,8 @@
             </button>
             <input type="text" id="user_story_input"
                    placeholder="As a &lt;type of user&gt;, I want to &lt;perform an action&gt;, so that &lt;achieve a goal&gt;"
-                   onkeypress="checkEnter(event)">
+                   onkeypress="checkEnter(event)"
+                   autocomplete="off">
             <button onclick="sendToBackend()" class="toggle-btn">
                 <img class="send-prompt" src="{% static 'img/send-circle.svg' %}" alt="Send Prompt Icon">
             </button>

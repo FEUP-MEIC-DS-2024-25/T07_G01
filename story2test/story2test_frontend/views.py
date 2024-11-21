@@ -29,7 +29,7 @@ class GeminiAIView(View):
         )
 
         if check_if_user_story_format(user_story):
-            gemini_input = f"Given this user story: \"{user_story}\", can you convert it to Gherkin format and generate an acceptance test for it in Java? Answer just the Gherkin format and the code, nothing else but the Gherkin format and code."
+            gemini_input = f"Given this user story: \"{user_story}\", convert it to Gherkin format and generate an acceptance test for it in Java. Also please try to create at least 5 scenarios for the tests. Just answer with the Gherking format and Code, no more text."
 
             try:
                 answer = call_gemini_api(gemini_input)
@@ -96,7 +96,7 @@ def call_gemini_api(user_input):
 
 
 def check_if_user_story_format(user_story):
-    pattern = r"^As an? [a-zA-Z\s]+,? I want to [a-zA-Z\s]+,? so that [a-zA-Z\s]+.?$"
+    pattern = r"^As an? [a-zA-Z\s']+,? I want to [a-zA-Z\s']+,? so that [a-zA-Z\s']+\.?$"
 
     if re.match(pattern, user_story, re.IGNORECASE):
         return True
